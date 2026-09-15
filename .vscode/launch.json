@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "ReelDock",
+      "request": "launch",
+      "mainClass": "com.shivampoonia.reeldock.ReelDockApplication",
+      "projectName": "reeldock"
+    }
+  ]
+}

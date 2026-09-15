@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ReelDock · Media Campus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1410;
+      --muted: #6a5a4e;
+      --paper: #f4ece3;
+      --card: #fffaf4;
+      --line: #d9cbb8;
+      --accent: #9a3412;
+      --accent-soft: #f3d5c4;
+      --ok: #3d5a40;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background:
+        repeating-linear-gradient(90deg, rgba(26,20,16,0.04) 0 1px, transparent 1px 28px),
+        linear-gradient(180deg, #f7f0e6 0%, var(--paper) 100%);
+      min-height: 100vh;
+    }
+    header, main, footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-left: 1.4rem;
+      padding-right: 1.4rem;
+    }
+    header { padding-top: 2.2rem; padding-bottom: 1rem; }
+    .eyebrow {
+      font-family: "IBM Plex Mono", monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 0.45rem;
+    }
+    h1 { margin: 0 0 0.4rem; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+    .sub { color: var(--muted); max-width: 42rem; line-height: 1.5; margin: 0; }
+    main { display: grid; gap: 1.2rem; padding-bottom: 2.4rem; }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.1rem 1.2rem 1.25rem;
+    }
+    .panel h2 { margin: 0 0 0.85rem; font-size: 1.05rem; }
+    .counts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.7rem;
+    }
+    .count {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.7rem 0.8rem;
+      background: #fff;
+    }
+    .count b { display: block; font-family: "IBM Plex Mono", monospace; font-size: 1.35rem; }
+    .count span { color: var(--muted); font-size: 0.8rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.7rem;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.75rem 0.85rem;
+      background: #fff;
+    }
+    .chip strong { display: block; margin-bottom: 0.2rem; }
+    .meta { color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: end;
+      margin-bottom: 0.8rem;
+    }
+    label { display: grid; gap: 0.2rem; font-size: 0.78rem; color: var(--muted); }
+    input, select, button, textarea {
+      font: inherit;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      padding: 0.5rem 0.65rem;
+      background: #fff;
+      color: var(--ink);
+    }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button.secondary { background: #fff; color: var(--ink); }
+    #status { min-height: 1.2rem; color: var(--accent); font-size: 0.9rem; margin: 0.4rem 0 0.6rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.5rem 0.3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-size: 0.78rem; }
+    .empty { color: var(--muted); }
+    footer { color: var(--muted); font-size: 0.85rem; padding-bottom: 1.8rem; }
+    code { font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Gisma · M605 ReelDock</p>
+    <h1>Media Campus kit desk</h1>
+    <p class="sub">
+      One MySQL database for kit loans, member accounts, production cards and reviews.
+      JSON payload on each production holds crew and codec. Max loan 72 hours, one open kit per student.
+    </p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Row counts</h2>
+      <div id="counts" class="counts"><p class="empty">Loading…</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>Aggregations</h2>
+      <div class="grid">
+        <div>
+          <h2 style="font-size:0.92rem">Kit load</h2>
+          <div id="kitLoad" class="empty">Loading…</div>
+        </div>
+        <div>
+          <h2 style="font-size:0.92rem">Review scores by kind</h2>
+          <div id="ratings" class="empty">Loading…</div>
+        </div>
+        <div>
+          <h2 style="font-size:0.92rem">Codecs (JSON extract)</h2>
+          <div id="codecs" class="empty">Loading…</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Overdue open loans</h2>
+      <div id="overdue"><p class="empty">Loading…</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>Desk · GH1061529</h2>
+      <div id="desk"><p class="empty">Loading…</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>Check out a kit</h2>
+      <div class="toolbar">
+        <label>Member
+          <select id="memberId"></select>
+        </label>
+        <label>Ready camera
+          <select id="kitId"></select>
+        </label>
+        <label>Taken
+          <input id="takenAt" type="datetime-local" />
+        </label>
+        <label>Due
+          <input id="dueAt" type="datetime-local" />
+        </label>
+        <button id="loanBtn" type="button">Check out</button>
+        <button id="refreshBtn" class="secondary" type="button">Refresh</button>
+      </div>
+      <div id="status"></div>
+    </section>
+  </main>
+
+  <footer>Shivam · GH1061529 · API at /api/v1/members · /api/v1/kits · /api/v1/loans · /api/v1/productions · /api/v1/reviews</footer>
+
+  <script>
+    const statusEl = document.getElementById("status");
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function toLocalInput(d) {
+      return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+    function toApiDate(value) { return value.length === 16 ? value + ":00" : value; }
+    function chips(items, html) {
+      if (!items.length) return `<p class="empty">None.</p>`;
+      return `<div class="grid">${items.map(html).join("")}</div>`;
+    }
+
+    function setDefaultTimes() {
+      const start = new Date();
+      start.setHours(start.getHours() + 1, 0, 0, 0);
+      const end = new Date(start);
+      end.setHours(end.getHours() + 24);
+      document.getElementById("takenAt").value = toLocalInput(start);
+      document.getElementById("dueAt").value = toLocalInput(end);
+    }
+
+    async function loadCounts() {
+      const c = await fetch("/api/v1/stats/counts").then(r => r.json());
+      document.getElementById("counts").innerHTML = Object.entries(c).map(([k,v]) =>
+        `<div class="count"><b>${v}</b><span>${k}</span></div>`).join("");
+    }
+
+    async function loadStats() {
+      const [kits, ratings, codecs] = await Promise.all([
+        fetch("/api/v1/stats/kits").then(r => r.json()),
+        fetch("/api/v1/stats/ratings").then(r => r.json()),
+        fetch("/api/v1/stats/codecs").then(r => r.json())
+      ]);
+      document.getElementById("kitLoad").innerHTML = kits.map(k =>
+        `<div class="chip"><strong>${k.kind} · ${k.status}</strong><div class="meta">${k.n} kits</div></div>`).join("");
+      document.getElementById("ratings").innerHTML = ratings.map(r =>
+        `<div class="chip"><strong>${r.kind}</strong><div class="meta">${r.avgStars.toFixed(2)} avg · ${r.reviewCount} reviews</div></div>`).join("");
+      document.getElementById("codecs").innerHTML = codecs.map(r =>
+        `<div class="chip"><strong>${r.codec}</strong><div class="meta">${r.n} productions</div></div>`).join("");
+    }
+
+    async function loadOverdue() {
+      const rows = await fetch("/api/v1/loans/overdue").then(r => r.json());
+      const box = document.getElementById("overdue");
+      if (!rows.length) { box.innerHTML = `<p class="empty">No overdue open loans.</p>`; return; }
+      box.innerHTML = `<table><thead><tr><th>Kit</th><th>Member</th><th>Due</th><th>PIN</th><th></th></tr></thead><tbody>
+        ${rows.map(l => `<tr>
+          <td>${l.kitTag}</td><td>${l.campusId}</td>
+          <td>${String(l.dueAt).replace("T"," ")}</td><td>${l.lockerPin}</td>
+          <td><button data-return="${l.id}" class="secondary" type="button">Return</button></td>
+        </tr>`).join("")}
+      </tbody></table>`;
+      box.querySelectorAll("[data-return]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const res = await fetch(`/api/v1/loans/${btn.dataset.return}/return`, { method: "POST" });
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            statusEl.textContent = err.message || "Return failed";
+          }
+          await boot();
+        });
+      });
+    }
+
+    async function loadDesk() {
+      const d = await fetch("/api/v1/desk/GH1061529").then(r => r.json());
+      const open = d.loans.filter(l => l.status === "OPEN");
+      document.getElementById("desk").innerHTML = `
+        <div class="chip" style="margin-bottom:0.8rem">
+          <strong>${d.member.displayName} · ${d.member.campusId}</strong>
+          <div class="meta">${d.member.programme} · ${d.loans.length} loans · ${d.productions.length} cuts · ${d.reviews.length} reviews written</div>
+        </div>
+        <p class="meta">Open loan: ${open.length ? open.map(l => l.kitTag + " due " + String(l.dueAt).replace("T"," ")).join(", ") : "none"}</p>
+        ${chips(d.productions.slice(0, 4), p => `<div class="chip"><strong>${p.title}</strong><div class="meta">${p.kind} · ${p.payload && p.payload.codec ? p.payload.codec : ""} · ${p.cutStatus}</div></div>`)}
+      `;
+    }
+
+    async function loadForm() {
+      const [people, ready] = await Promise.all([
+        fetch("/api/v1/members").then(r => r.json()),
+        fetch("/api/v1/kits/ready/CAMERA").then(r => r.json())
+      ]);
+      const memberSel = document.getElementById("memberId");
+      const kitSel = document.getElementById("kitId");
+      memberSel.innerHTML = people.slice(0, 30).map(m =>
+        `<option value="${m.id}">${m.displayName} (${m.campusId})</option>`).join("");
+      kitSel.innerHTML = ready.slice(0, 30).map(k =>
+        `<option value="${k.id}">${k.tag} · ${k.label}</option>`).join("");
+    }
+
+    async function checkout() {
+      statusEl.textContent = "";
+      const body = {
+        memberId: Number(document.getElementById("memberId").value),
+        kitId: Number(document.getElementById("kitId").value),
+        takenAt: toApiDate(document.getElementById("takenAt").value),
+        dueAt: toApiDate(document.getElementById("dueAt").value),
+        note: "Desk checkout from ReelDock UI"
+      };
+      const res = await fetch("/api/v1/loans", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        statusEl.textContent = payload.message || "Checkout blocked";
+        return;
+      }
+      statusEl.textContent = `Checked out ${payload.kitTag}. Locker PIN ${payload.lockerPin}`;
+      await boot();
+    }
+
+    async function boot() {
+      setDefaultTimes();
+      await Promise.all([loadCounts(), loadStats(), loadOverdue(), loadDesk(), loadForm()]);
+    }
+
+    document.getElementById("loanBtn").addEventListener("click", checkout);
+    document.getElementById("refreshBtn").addEventListener("click", boot);
+    boot().catch(err => {
+      statusEl.textContent = "Could not reach API. Is the app running on port 8089?";
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

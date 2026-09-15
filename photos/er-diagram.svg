@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="920" viewBox="0 0 1400 920">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feOffset dx="3" dy="3" in="SourceAlpha" result="off"/>
+      <feGaussianBlur in="off" stdDeviation="1.2" result="blur"/>
+      <feFlood flood-color="#888" flood-opacity="0.55"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1400" height="920" fill="#ffffff"/>
+  <text x="700" y="42" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#444">Entity Relationship Diagram - ReelDock Kit Desk</text>
+
+  <!-- legend -->
+  <rect x="48" y="62" width="820" height="78" rx="8" fill="#fff" stroke="#888"/>
+  <rect x="72" y="84" width="92" height="36" rx="4" fill="#a9c4dc" stroke="#5d6d7a" filter="url(#shadow)"/>
+  <text x="118" y="107" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">Entity</text>
+  <polygon points="230,102 258,84 286,102 258,120" fill="#cbb07a" stroke="#6e6248" filter="url(#shadow)"/>
+  <text x="258" y="107" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333">Action</text>
+  <ellipse cx="370" cy="102" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="370" y="107" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Attribute</text>
+  <g stroke="#333" fill="none" stroke-width="1.6">
+    <line x1="470" y1="86" x2="530" y2="86"/>
+    <line x1="500" y1="78" x2="500" y2="94"/>
+    <line x1="470" y1="102" x2="512" y2="102"/>
+    <circle cx="520" cy="102" r="7"/>
+    <polyline points="512,96 530,102 512,108"/>
+    <line x1="470" y1="122" x2="512" y2="122"/>
+    <polyline points="512,116 530,122 512,128"/>
+  </g>
+  <text x="542" y="90" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">= One</text>
+  <text x="542" y="107" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">= Zero or more, Optional</text>
+  <text x="542" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">= Many</text>
+
+  <!-- connectors (behind shapes) -->
+  <g stroke="#333" fill="none" stroke-width="1.7">
+    <!-- member attrs -->
+    <line x1="168" y1="268" x2="248" y2="318"/>
+    <line x1="168" y1="318" x2="248" y2="318"/>
+    <line x1="168" y1="368" x2="248" y2="318"/>
+    <line x1="168" y1="418" x2="248" y2="328"/>
+    <!-- member - holds - loan -->
+    <line x1="360" y1="318" x2="430" y2="318"/>
+    <line x1="500" y1="318" x2="575" y2="318"/>
+    <!-- loan attrs -->
+    <line x1="630" y1="248" x2="630" y2="296"/>
+    <line x1="710" y1="268" x2="680" y2="310"/>
+    <line x1="710" y1="318" x2="680" y2="318"/>
+    <!-- loan - on kit - kit -->
+    <line x1="680" y1="296" x2="760" y2="214"/>
+    <line x1="830" y1="178" x2="900" y2="148"/>
+    <!-- kit attrs -->
+    <line x1="1012" y1="128" x2="1088" y2="108"/>
+    <line x1="1012" y1="148" x2="1088" y2="148"/>
+    <line x1="1012" y1="168" x2="1088" y2="188"/>
+    <!-- member - owns - production -->
+    <line x1="304" y1="340" x2="304" y2="470"/>
+    <line x1="304" y1="540" x2="304" y2="610"/>
+    <line x1="360" y1="630" x2="575" y2="630"/>
+    <!-- production attrs -->
+    <line x1="575" y1="652" x2="500" y2="730"/>
+    <line x1="630" y1="652" x2="630" y2="730"/>
+    <line x1="685" y1="652" x2="760" y2="730"/>
+    <!-- production - uses - kit -->
+    <line x1="680" y1="610" x2="790" y2="470"/>
+    <line x1="860" y1="430" x2="956" y2="170"/>
+    <!-- member - writes - review -->
+    <line x1="248" y1="340" x2="200" y2="780"/>
+    <line x1="270" y1="800" x2="900" y2="800"/>
+    <line x1="956" y1="780" x2="956" y2="548"/>
+    <!-- review - marks - production -->
+    <line x1="900" y1="508" x2="740" y2="560"/>
+    <line x1="680" y1="580" x2="680" y2="608"/>
+    <!-- review attrs -->
+    <line x1="1012" y1="498" x2="1095" y2="468"/>
+    <line x1="1012" y1="528" x2="1095" y2="548"/>
+  </g>
+  <!-- cardinality ticks -->
+  <g stroke="#333" fill="none" stroke-width="1.7">
+    <line x1="352" y1="308" x2="352" y2="328"/>
+    <polyline points="568,310 580,318 568,326" />
+    <line x1="748" y1="200" x2="758" y2="214"/>
+    <line x1="352" y1="620" x2="352" y2="640"/>
+    <polyline points="568,622 580,630 568,638"/>
+    <line x1="948" y1="178" x2="964" y2="178"/>
+    <circle cx="792" cy="468" r="7"/>
+    <polyline points="784,460 800,470 784,480"/>
+    <line x1="948" y1="538" x2="964" y2="538"/>
+    <polyline points="888,790 900,800 888,810"/>
+  </g>
+
+  <!-- Member attributes -->
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff" text-anchor="middle">
+    <ellipse cx="108" cy="268" rx="60" ry="24" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+    <text x="108" y="273">Campus ID</text>
+    <ellipse cx="108" cy="318" rx="52" ry="24" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+    <text x="108" y="323">Name</text>
+    <ellipse cx="108" cy="368" rx="52" ry="24" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+    <text x="108" y="373">E-mail</text>
+    <ellipse cx="108" cy="418" rx="62" ry="24" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+    <text x="108" y="423">Programme</text>
+  </g>
+
+  <rect x="248" y="296" width="112" height="44" rx="4" fill="#a9c4dc" stroke="#5d6d7a" filter="url(#shadow)"/>
+  <text x="304" y="323" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#333">Member</text>
+
+  <polygon points="465,318 500,296 535,318 500,340" fill="#cbb07a" stroke="#6e6248" filter="url(#shadow)"/>
+  <text x="500" y="323" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">Holds</text>
+
+  <rect x="575" y="296" width="112" height="44" rx="4" fill="#a9c4dc" stroke="#5d6d7a" filter="url(#shadow)"/>
+  <text x="631" y="323" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#333">Loan</text>
+
+  <ellipse cx="630" cy="228" rx="58" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="630" y="233" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Locker PIN</text>
+  <ellipse cx="742" cy="258" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="742" y="263" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Due At</text>
+  <ellipse cx="742" cy="318" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="742" y="323" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Status</text>
+
+  <polygon points="790,196 830,174 870,196 830,218" fill="#cbb07a" stroke="#6e6248" filter="url(#shadow)"/>
+  <text x="830" y="201" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">On Kit</text>
+
+  <rect x="900" y="126" width="112" height="44" rx="4" fill="#a9c4dc" stroke="#5d6d7a" filter="url(#shadow)"/>
+  <text x="956" y="153" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#333">Kit</text>
+
+  <ellipse cx="1148" cy="108" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="1148" y="113" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Tag</text>
+  <ellipse cx="1148" cy="148" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="1148" y="153" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Kind</text>
+  <ellipse cx="1148" cy="188" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="1148" y="193" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Serial</text>
+
+  <polygon points="304,505 339,483 374,505 339,527" fill="#cbb07a" stroke="#6e6248" filter="url(#shadow)"/>
+  <text x="339" y="510" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">Owns</text>
+
+  <rect x="575" y="608" width="112" height="44" rx="4" fill="#a9c4dc" stroke="#5d6d7a" filter="url(#shadow)"/>
+  <text x="631" y="635" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#333">Production</text>
+
+  <ellipse cx="500" cy="752" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="500" y="757" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Slug</text>
+  <ellipse cx="630" cy="752" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="630" y="757" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Title</text>
+  <ellipse cx="760" cy="752" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="760" y="757" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Codec</text>
+
+  <polygon points="790,448 830,426 870,448 830,470" fill="#cbb07a" stroke="#6e6248" filter="url(#shadow)"/>
+  <text x="830" y="453" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">Uses</text>
+
+  <polygon points="165,800 200,778 235,800 200,822" fill="#cbb07a" stroke="#6e6248" filter="url(#shadow)"/>
+  <text x="200" y="805" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">Writes</text>
+
+  <rect x="900" y="486" width="112" height="44" rx="4" fill="#a9c4dc" stroke="#5d6d7a" filter="url(#shadow)"/>
+  <text x="956" y="513" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#333">Review</text>
+
+  <polygon points="700,560 740,538 780,560 740,582" fill="#cbb07a" stroke="#6e6248" filter="url(#shadow)"/>
+  <text x="740" y="565" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#333">Marks</text>
+
+  <ellipse cx="1155" cy="468" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="1155" y="473" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Stars</text>
+  <ellipse cx="1155" cy="548" rx="48" ry="22" fill="#7ea3c7" stroke="#4d6478" filter="url(#shadow)"/>
+  <text x="1155" y="553" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#fff">Body</text>
+</svg>

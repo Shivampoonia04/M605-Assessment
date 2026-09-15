@@ -1,0 +1,13 @@
+target/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+*.log
+*.log.err
+app-run.log*
+.DS_Store
+*.pdf
+report-assets/
+loan.json
